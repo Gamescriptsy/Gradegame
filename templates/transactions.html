@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Riwayat Transaksi{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Riwayat Transaksi</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID Transaksi</th>
+                <th>Game</th>
+                <th>Username Game</th>
+                <th>Item</th>
+                <th>Harga</th>
+                <th>Status</th>
+                <th>Tanggal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if transactions.items %}
+                {% for transaction in transactions.items %}
+                <tr>
+                    <td>#{{ transaction.id }}</td>
+                    <td>{{ transaction.game.name }}</td>
+                    <td>{{ transaction.game_username }}</td>
+                    <td>{{ transaction.price_list.item_name }}</td>
+                    <td>Rp {{ "{:,.0f}".format(transaction.price_list.price).replace(',', '.') }}</td>
+                    <td>
+                        <span class="badge bg-{{ 'success' if transaction.status == 'completed' else 'warning' }}" 
+                              data-bs-toggle="tooltip" 
+                              title="{{ 'Transaksi berhasil' if transaction.status == 'completed' else 'Menunggu pembayaran' }}">
+                            {{ transaction.status.capitalize() }}
+                        </span>
+                    </td>
+                    <td>{{ transaction.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">Belum ada transaksi.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Paginasi -->
+<nav>
+    <ul class="pagination justify-content-center">
+        {% if transactions.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('transaction_history', page=transactions.prev_num) }}">Sebelumnya</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">Sebelumnya</span></li>
+        {% endif %}
+
+        {% for page in range(1, transactions.pages + 1) %}
+        <li class="page-item {{ 'active' if page == transactions.page else '' }}">
+            <a class="page-link" href="{{ url_for('transaction_history', page=page) }}">{{ page }}</a>
+        </li>
+        {% endfor %}
+
+        {% if transactions.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('transaction_history', page=transactions.next_num) }}">Berikutnya</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">Berikutnya</span></li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+<script>
+    // Inisialisasi Tooltip Bootstrap
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+</script>
+{% endblock %}

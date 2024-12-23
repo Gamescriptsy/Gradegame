@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}Profil Saya{% endblock %}
+
+{% block content %}
+<div class="container profile-section">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card profile-card mb-4">
+                <div class="card-body text-center">
+                    <img src="{{ url_for('static', filename='images/Hero_Carousel/V.png') }}" 
+                         class="rounded-circle profile-avatar mb-3" 
+                         alt="Foto Profil" 
+                         width="150" height="150">
+                    <h3 class="card-title">{{ current_user.username }}</h3>
+                    <p class="text-muted">{{ current_user.email }}</p>
+                    <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                        Edit Profil
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card profile-details">
+                <div class="card-header">
+                    <h4>Detail Akun</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Username</strong></div>
+                        <div class="col-sm-8">{{ current_user.username }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Email</strong></div>
+                        <div class="col-sm-8">{{ current_user.email }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Bergabung Sejak</strong></div>
+                        <div class="col-sm-8">{{ current_user.date_joined.strftime('%d %B %Y') }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4 recent-transactions">
+                <div class="card-header">
+                    <h4>Transaksi Terakhir</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Game</th>
+                                    <th>Item</th>
+                                    <th>Waktu</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for transaction in transactions %}
+                                <tr>
+                                    <td>{{ transaction.game.name }}</td>
+                                    <td>{{ transaction.item }}</td>
+                                    <td>{{ transaction.created_at.strftime('%d %B %Y %H:%M') }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ transaction.status }}">
+                                            {{ transaction.status.capitalize() }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit Profil -->
+<div class="modal fade" id="editProfileModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" value="{{ current_user.username }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" value="{{ current_user.email }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_css %}
+<style>
+    .profile-section {
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+    }
+    .profile-card, .profile-details, .recent-transactions {
+        background-color: #2c2c2c;
+        border: none;
+    }
+    .profile-avatar {
+        object-fit: cover;
+        border: 3px solid #ff6b6b;
+    }
+    .table {
+        color: #e0e0e0;
+    }
+</style>
+{% endblock %}
+{% endblock %} 

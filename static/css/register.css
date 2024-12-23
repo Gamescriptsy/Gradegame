@@ -1,0 +1,47 @@
+.auth-container { 
+    background-color: #1e1e1e; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
+    padding: 30px; 
+    width: 100%; 
+    max-width: 400px; 
+    transition: all 0.3s ease; 
+}
+
+.auth-container:hover { 
+    transform: scale(1.02); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); 
+}
+
+.form-control { 
+    background-color: #2c2c2c; 
+    border: 1px solid #444; 
+    color: #ffffff; 
+}
+
+.form-control:focus { 
+    background-color: #3c3c3c; 
+    border-color: #6200ee; 
+    box-shadow: 0 0 0 0.2rem rgba(98, 0, 238, 0.25); 
+    color: #ffffff; 
+}
+
+.btn-primary { 
+    background-color: #6200ee; 
+    border-color: #6200ee; 
+    transition: all 0.3s ease; 
+}
+
+.btn-primary:hover { 
+    background-color: #7c3aed; 
+    border-color: #7c3aed; 
+}
+
+.card-title { 
+    color: #6200ee; 
+    font-weight: bold; 
+}
+
+.form-label { 
+    color: #bbbbbb; 
+}

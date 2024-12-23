@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400; /* Normal */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700; /* Bold */
+}
+
+
+/* Memisahkan Formulir dan Select Recharge */
+.col-12.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Header Select Recharge */
+.card-header.bg-primary.text-white {
+    background: linear-gradient(to right, #007BFF, #00C6FF) !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Kontainer Utama */
+.container {
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+/* Gaya Border Warna-Warni untuk Gambar */
+.border-rainbow {
+    border: 10px solid transparent;
+    background-image: linear-gradient(to right, #FF0000, #FFA500, #FFFF00, #008000, #0000FF, #4B0082, #EE82EE);
+    background-origin: border-box;
+    background-clip: border-box;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Gaya untuk Card */
+.card {
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Gaya untuk Card Header */
+.card-header {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Roboto', cursive;
+    background: linear-gradient(to right, #ebedef, #0c03ac) !important;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Gaya untuk Label Form */
+.form-label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Gaya untuk Input dan Select Form */
+.form-control, .form-check-input {
+    border-radius: 10px;
+    border: 2px solid #007BFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: #00C6FF;
+    box-shadow: 0 0 8px #00C6FF;
+}
+
+.form-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group-text {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+  }
+  
+  .form-control {
+    border: 1px solid #ccc;
+    border-radius: 0;
+  }
+
+/* Tombol Utama */
+.btn-primary {
+    background: linear-gradient(to right, #007BFF, #00C6FF);
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #0056b3, #0077b3);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+}
+
+/* Gaya untuk Radio Button Labels */
+.form-check-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Gaya Tampilan Teks Informasi */
+.text-center.mt-3 .text-danger {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Gaya Teks Gradient */
+.text-gradient {
+    background: linear-gradient(to right, #FF0000, #FFA500, #FFFF00, #008000, #0000FF, #4B0082, #EE82EE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+/* Gaya Payment Method Icons */
+.payment-logo {
+    max-width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Gaya Card Body */
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Gaya Payment Summary Card */
+.card.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+/* Gaya Proceed to Payment Button */
+.btn-success {
+    background: linear-gradient(to right, #eeefee, #0000FF);
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success:hover {
+    background: linear-gradient(to right, #d5d5dc, #334971);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+}
+
+/* Gaya Kotak Pembayaran */
+.payment-box {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 300px; /* Atur lebar kotak */
+    height: 150px; /* Atur tinggi kotak */
+}
+
+.payment-box input[type="radio"] {
+    display: none; /* Sembunyikan input radio secara visual */
+}
+
+.payment-box label {
+    cursor: pointer; /* Ubah kursor menjadi pointer saat hover */
+    border: 2px solid transparent; /* Tambahkan border untuk interaksi */
+    padding: 10px;
+    border-radius: 8px;
+    transition: border 0.3s ease-in-out; /* Efek transisi */
+}
+
+.payment-box input[type="radio"]:checked + label {
+    border: 2px solid #007bff; /* Warna border saat dipilih */
+    background-color: #e7f1ff; /* Background lebih terang saat dipilih */
+    color: #007bff; /* Warna teks */
+}
+
+.payment-box:hover {
+    border-color: #007BFF;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Gambar Metode Pembayaran */
+.payment-icon {
+    max-width: 60px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.payment-box:hover .payment-icon {
+    transform: scale(1.1);
+}
+
+/* Gaya Nama dan Harga */
+.payment-name {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.payment-price {
+    font-size: 0.9rem;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.payment-box.active {
+    border-color: #007BFF;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.payment-box input[type="radio"] {
+    display: none;
+}
+
+.payment {
+    border: 2px solid #390ae5; /* Tambahkan border hijau */
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Latar belakang abu-abu terang */
+    padding: 15px;
+}

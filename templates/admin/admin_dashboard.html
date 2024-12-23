@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Admin Dashboard</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Total Users</h5>
+                    <p class="display-4">{{ total_users }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Total Transactions</h5>
+                    <p class="display-4">{{ total_transactions }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Total Games</h5>
+                    <p class="display-4">{{ total_games }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4">
+        <a href="{{ url_for('manage_users') }}" class="btn btn-primary">Manage Users</a>
+        <a href="{{ url_for('manage_transactions') }}" class="btn btn-secondary">Manage Transactions</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Manage Transactions</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Game</th>
+                <th>Item</th>
+                <th>Amount</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions.items %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.user.username }}</td>
+                <td>{{ transaction.game.name }}</td>
+                <td>{{ transaction.item_name }}</td>
+                <td>Rp {{ transaction.amount }}</td>
+                <td>{{ transaction.payment_method }}</td>
+                <td>{{ transaction.status }}</td>
+                <td>{{ transaction.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Pagination -->
+    {% if transactions.has_prev %}
+        <a href="{{ url_for('manage_transactions', page=transactions.prev_num) }}" class="btn btn-secondary">Previous</a>
+    {% endif %}
+    {% if transactions.has_next %}
+        <a href="{{ url_for('manage_transactions', page=transactions.next_num) }}" class="btn btn-secondary">Next</a>
+    {% endif %}
+</div>
+{% endblock %}

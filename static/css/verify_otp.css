@@ -1,0 +1,27 @@
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #343a40;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.auth-container .form-label {
+    color: #ddd;
+}
+
+.auth-container .btn-primary {
+    background: #007bff;
+    border: none;
+}
+
+.auth-container .text-light {
+    color: #adb5bd;
+}
+
+.auth-container .text-light:hover {
+    color: #fff;
+    text-decoration: underline;
+}

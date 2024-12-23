@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+<!-- Hero Section dengan Carousel Modern -->
+<section class="hero-section mb-5">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for item in range(3) %}
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ item }}" 
+                    class="{{ 'active' if item == 0 else '' }}" 
+                    aria-current="{{ 'true' if item == 0 else 'false' }}" 
+                    aria-label="Slide {{ item + 1 }}"></button>
+            {% endfor %}
+        </div>
+        
+        <div class="carousel-inner rounded-4 overflow-hidden">
+            {% set hero_images = [
+                'images/Hero_Carousel/Grade 1.png', 
+                'images/Hero_Carousel/Grade 2.png', 
+                'images/Hero_Carousel/Grade.png'
+            ] %}
+            
+            {% for image in hero_images %}
+            <div class="carousel-item {{ 'active' if loop.first else '' }}" data-bs-interval="5000">
+                <img src="{{ url_for('static', filename=image) }}" 
+                     class="d-block w-100 carousel-image" 
+                     alt="Game Slide {{ loop.index }}">
+            </div>
+            {% endfor %}
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<!-- Game Categories -->
+<section class="game-categories mb-5">
+    <div class="row g-4">
+        {% set game_categories = [
+            {'id': 1, 'name': 'Free Fire', 'image': 'images/KATEGORI_GAME/FINALLL.png', 'route': 'topup_freefire'},
+            {'id': 2, 'name': 'Mobile Legends', 'image': 'images/KATEGORI_GAME/ML.jpeg', 'route': 'topup_mlbb'},
+            {'id': 3, 'name': 'PUBG Mobile', 'image': 'images/KATEGORI_GAME/PUBG M.jpg', 'route': 'topup_pubg'}
+        ] %}
+        
+        
+        {% for game in game_categories %}
+        <div class="col-md-4">
+            <div class="card game-category-card text-center">
+                <div class="card-body">
+                    <img src="{{ url_for('static', filename=game.image) }}" 
+                         alt="{{ game.name }}"
+                         class="game-category-image mb-3">
+                    <h5 class="game-category-title">{{ game.name }}</h5>
+                    <p class="game-category-subtitle">Proses Kilat</p>
+                    <a href="{{ url_for('topup', game_name=game.name|lower|replace(' ', '')) }}" class="btn btn-primary text-white px-3">Top Up</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features mb-5">
+    <div class="row g-4">
+        {% set features = [
+            {'icon': 'lightning', 'title': 'Proses Cepat', 'description': 'Top up instan ke akun game Anda'},
+            {'icon': 'shield', 'title': 'Aman & Terpercaya', 'description': 'Transaksi aman dengan enkripsi'},
+            {'icon': 'headphones', 'title': '24/7 Support', 'description': 'Layanan pelanggan selalu siap'}
+        ] %}
+        
+        {% for feature in features %}
+        <div class="col-md-4">
+            <div class="card feature-card text-center h-100">
+                <div class="card-body">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-{{ feature.icon }}"></i>
+                    </div>
+                    <h4 class="feature-title">{{ feature.title }}</h4>
+                    <p class="feature-description text-muted">{{ feature.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Latest Transactions -->
+<section class="latest-transactions">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Transaksi Terakhir</h3>
+            <a href="{{ url_for('transaction_history') }}" class="btn btn-outline-primary btn-sm">Lihat Semua</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Game</th>
+                            <th>Item</th>
+                            <th>Waktu</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if last_transaction %}
+                        <tr>
+                            <td>{{ last_transaction.game.name }}</td>
+                            <td>{{ last_transaction.item_name }}</td>
+                            <td>{{ last_transaction.created_at }}</td>
+                            <td>{{ last_transaction.status }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4">Belum ada transaksi</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                           
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% endblock %}

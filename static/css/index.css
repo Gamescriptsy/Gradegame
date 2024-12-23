@@ -1,0 +1,177 @@
+:root {
+    --bg-primary:  #1F1F1F;
+    --bg-secondary: #1e1e1e;
+    --text-primary: #080303;
+    --accent-color: #0b26d6;
+    --accent-hover: #0e040e;
+    --card-bg: #f3f3f8;
+    --gradient-primary: linear-gradient(135deg, #040a52, #150808);
+    --gradient-accent: linear-gradient(135deg, #f7fbfb, #0c0754);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--gradient-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 2000px; /* Atur lebar maksimal sesuai kebutuhan */
+    margin: 0 auto; /* Memposisikan kontainer di tengah */
+  }
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Hero Carousel */
+.carousel-image {
+    height: 500px;
+    object-fit: contain;
+    object-position: center center;
+    filter: brightness(0.8);
+    transition: all 0.3s ease;
+}
+
+.carousel-image:hover {
+    filter: brightness(1);
+    transform: scale(1.02);
+}
+
+.carousel-inner {
+    padding: 0;
+    margin: 0;
+}
+
+.game-category-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Game Categories Wrapper */
+.game-categories .row {
+    display: flex; /* Mengatur layout menjadi flexbox */
+    justify-content: space-between; /* Menjaga jarak antar kartu */
+    width: 100%; /* Memanfaatkan seluruh lebar */
+    max-width: 2000px; /* Samakan dengan navbar */
+    margin: 0 auto; /* Pusatkan di tengah */
+    padding: 0 20px; /* Tambahkan padding samping jika diperlukan */
+    box-sizing: border-box;
+}
+
+.game-category-card::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    z-index: -1;
+    background: linear-gradient(135deg, #dadfdd, #1706ae, #010606); /* Gradient border */
+    border-radius: 19px; /* Menyesuaikan radius border */
+}
+
+.game-category-card {
+    flex: 1;
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 10px;
+
+    /* Gradient Border Senada dengan Background */
+    border: 5px solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source: var(--gradient-primary); /* Menggunakan gradient background */
+}
+
+
+.game-category-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--accent-color); /* Tambahkan border bawah */
+    transition: transform 0.3s ease;
+}
+
+
+.game-category-image:hover {
+    transform: scale(1.1);
+}
+
+.game-category-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--accent-hover);
+    margin-bottom: 5px;
+}
+
+
+.btn-primary {
+    background: linear-gradient(135deg, #040b47, #b1d9df);
+    color: rgb(23, 3, 3);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #040b47, #ced3d4);
+    transform: scale(1.1);
+    color: #010105;
+}
+
+/* Features Section */
+.feature-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1700px;
+    margin: 10px;
+}
+
+/* Form Section Adjustment */
+.table-wrapper {
+    width: 100%;
+    max-width: 2000px; /* Samakan dengan navbar */
+    margin: 0 auto; /* Pusatkan */
+    padding: 0 20px; /* Padding samping sesuai navbar */
+    box-sizing: border-box; /* Memastikan padding tidak menambah ukuran elemen */
+}
+
+/* Transactions Table */
+.table {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .carousel-image {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+    }
+}

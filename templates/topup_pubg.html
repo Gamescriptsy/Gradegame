@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% block title %}Top Up Free Fire{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pubg.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <!-- Left Section: Game Information -->
+      <div class="col-md-4">
+        <div class="card shadow-lg mb-4 h-100">
+          <!-- Image with Colorful Border -->
+          <div class="d-flex align-items-center">
+            <div class="bordered-image mr-4">
+              <img src="{{ url_for('static', filename='images/Hero_Carousel/Grade.png') }}" alt="Free Fire Banner" class="card-img-top">
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">PUBG Mobile</h5>
+            <p class="text-muted text-center">Diamond lewat WhatsApp Admin</p>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle text-success"></i> Pilih jumlah top up sesuai kebutuhan</li>
+              <li><i class="bi bi-check-circle text-success"></i> Metode pembayaran: Bank, Dana, GoPay, OVO</li>
+              <li><i class="bi bi-check-circle text-success"></i> Konfirmasi pembayaran melalui WhatsApp <strong>+6287879903876</strong></li>
+            </ul>
+            <div class="text-center mt-3">
+              <span class="text-danger"><strong>PASTIKAN USER ID DI GAME SUDAH BENAR!</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right Section: Top-Up Process -->
+      <div class="col-md-8">
+        <form action="{{ url_for('topup', game_name='pubgmobile') }}" method="POST">
+          <!-- User ID Section -->
+          <div class="card shadow-lg mb-4">
+            <div class="card-header bg-primary text-white">
+              <h3 class="text-center">Player Information</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group mb-3">
+                <label for="user_id" class="form-label">User ID</label>
+                <input type="text" class="form-control" id="user_id" name="user_id" required placeholder="Enter Your Game ID">
+              </div>
+            </div>
+          </div>
+  
+          <!-- Diamond Nominal Section -->
+          <div class="card shadow-lg mb-4">
+            <div class="card-header bg-primary text-white">
+              <h3 class="text-center">Select Diamond Quantity</h3>
+            </div>
+            <div class="card-body">
+              {% set options = [
+                {"nominal": "5 Diamonds", "harga": 850},
+                {"nominal": "20 Diamonds", "harga": 2800},
+                {"nominal": "50 Diamonds", "harga": 6800},
+                {"nominal": "70 Diamonds", "harga": 9300},
+                {"nominal": "100 Diamonds", "harga": 13500},
+                {"nominal": "210 Diamonds", "harga": 27900},
+                {"nominal": "355 Diamonds", "harga": 46500},
+                {"nominal": "720 Diamonds", "harga": 93000},
+                {"nominal": "1440 Diamonds", "harga": 186100},
+                {"nominal": "2720 Diamonds", "harga": 346900}
+              ] %}
+              <div class="form-group mb-3">
+                <label class="form-label">Diamond Quantity</label>
+                {% for option in options %}
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="nominal" id="nominal-{{ loop.index }}" value="{{ option.nominal }}|{{ option.harga }}" required>
+                  <label class="form-check-label" for="nominal-{{ loop.index }}">
+                    {{ option.nominal }} - Rp {{ "{:,}".format(option.harga) }}
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+  
+          <!-- Payment Method Section -->
+          <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+              <h3 class="text-center">Payment Details</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <!-- GoPay -->
+                <div class="col-md-3 mb-3">
+                  <div class="payment-box text-center">
+                    <input type="radio" name="payment_method" id="gopay" value="GoPay">
+                    <label for="gopay">
+                      <img src="{{ url_for('static', filename='images/game/gopay.png') }}" alt="GoPay" class="payment-icon">
+                      <div class="payment-name">GoPay</div>
+                      <div class="payment-price payment" id="gopay-price">-</div>
+                    </label>
+                  </div>
+                </div>
+                <!-- Dana -->
+                <div class="col-md-3 mb-3">
+                  <div class="payment-box text-center">
+                    <input type="radio" name="payment_method" id="dana" value="Dana">
+                    <label for="dana">
+                      <img src="{{ url_for('static', filename='images/game/dana.png') }}" alt="Dana" class="payment-icon">
+                      <div class="payment-name">Dana</div>
+                      <div class="payment-price payment" id="dana-price">-</div>
+                    </label>
+                  </div>
+                </div>
+                <!-- QRIS -->
+                <div class="col-md-3 mb-3">
+                  <div class="payment-box text-center">
+                    <input type="radio" name="payment_method" id="qris" value="QRIS">
+                    <label for="qris">
+                      <img src="{{ url_for('static', filename='images/game/qris.png') }}" alt="QRIS" class="payment-icon">
+                      <div class="payment-name">QRIS</div>
+                      <div class="payment-price payment" id="qris-price">-</div>
+                    </label>
+                  </div>
+                </div>
+                <!-- ShopeePay -->
+                <div class="col-md-3 mb-3">
+                  <div class="payment-box text-center">
+                    <input type="radio" name="payment_method" id="shopeepay" value="ShopeePay">
+                    <label for="shopeepay">
+                      <img src="{{ url_for('static', filename='images/game/shopeepay.png') }}" alt="ShopeePay" class="payment-icon">
+                      <div class="payment-name">ShopeePay</div>
+                      <div class="payment-price payment" id="shopeepay-price">-</div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Payment Summary -->
+          <div class="card bg-light mt-3">
+            <div class="card-body">
+              <h5 class="card-title">Payment Summary</h5>
+              <div class="row">
+                <div class="col-6">Diamonds:</div>
+                <div class="col-6 text-end" id="selected-diamonds">-</div>
+                <div class="col-6">Total Price:</div>
+                <div class="col-6 text-end" id="total-price">-</div>
+                <div class="col-6">Payment Method:</div>
+                <div class="col-6 text-end" id="selected-payment-method">-</div>
+              </div>
+            </div>
+          </div>
+  
+          <button type="submit" class="btn btn-success w-100 mt-3">
+            <i class="bi bi-credit-card"></i> Proceed to Payment
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const diamondRadios = document.querySelectorAll('input[name="nominal"]');
+      const selectedDiamonds = document.getElementById('selected-diamonds');
+      const totalPrice = document.getElementById('total-price');
+      const paymentPrices = document.querySelectorAll('.payment-price'); // Semua harga payment
+      const paymentMethodRadios = document.querySelectorAll('input[name="payment_method"]');
+      const selectedPaymentMethod = document.getElementById('selected-payment-method'); // Untuk Payment Method
+  
+      // Event listener untuk setiap pilihan diamond
+      diamondRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          const [diamonds, price] = radio.value.split('|'); // Ambil diamond dan harga dari value
+  
+          // Update bagian Payment Summary
+          selectedDiamonds.textContent = diamonds;
+          totalPrice.textContent = 'Rp ' + new Intl.NumberFormat('id-ID').format(price);
+  
+          // Update harga di bagian Payment Details
+          paymentPrices.forEach(payment => {
+            payment.textContent = 'Rp ' + new Intl.NumberFormat('id-ID').format(price);
+            payment.classList.add('payment'); // Tambahkan class payment
+          });
+        });
+      });
+  
+      // Event listener untuk metode pembayaran
+      paymentMethodRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          const paymentName = radio.nextElementSibling.querySelector('.payment-name').textContent; // Ambil nama metode pembayaran
+          selectedPaymentMethod.textContent = paymentName; // Tampilkan di Payment Summary
+        });
+      });
+  
+      // Validasi sebelum submit form
+      document.querySelector('.btn-success').addEventListener('click', event => {
+        if (!document.querySelector('input[name="payment_method"]:checked')) {
+          event.preventDefault(); // Stop form submission
+          alert('Silakan pilih metode pembayaran.');
+        }
+      });
+    });
+  </script>
+{% endblock %}
