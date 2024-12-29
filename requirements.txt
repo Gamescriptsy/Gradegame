@@ -6,3 +6,4 @@ pyotp
 werkzeug
 Flask-Mail
 gunicorn
+flask-socketio
