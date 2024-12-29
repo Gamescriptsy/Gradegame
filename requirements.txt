@@ -5,3 +5,4 @@ flask-migrate
 pyotp
 werkzeug
 Flask-Mail
+gunicorn
